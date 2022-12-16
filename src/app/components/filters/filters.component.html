@@ -1,0 +1,17 @@
+
+<div class=" border">
+    <h3>Filters :</h3>
+    <form class="filters-container">
+        <mat-form-field appearance="outline">
+            <mat-label>Search</mat-label>
+            <input matInput (keyup)="search(this.input.value)" placeholder="Search by email or name" #input>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Filter By Role</mat-label>
+            <mat-select [(value)]="selectedRole" (selectionChange)="filterByRole()">
+            <mat-option *ngFor="let role of ROLES" [value]="role">{{ role }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+</div>

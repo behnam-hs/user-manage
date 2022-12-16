@@ -1,0 +1,9 @@
+<mat-paginator class="border" 
+            [length]="100"
+              [pageSize]="5"
+              [pageIndex]="currentPage - 1"
+              [pageSizeOptions]="[5, 10, 20, 50]"
+              showFirstLastButtons
+              (page)="handlePageChanged($event)"
+              aria-label="select page of users">
+</mat-paginator>

@@ -1,0 +1,17 @@
+.border {
+    padding: 1.5rem;
+    gap: 1rem;
+    margin-bottom: .75rem;
+
+    .filters-container {
+        display: flex;
+        justify-content: flex-start;
+        gap: .5rem;
+    }
+
+    h3 {
+        font-size: 1.375rem;
+        display: block;
+        text-align: left;
+    }
+}

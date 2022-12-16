@@ -1,0 +1,76 @@
+<div style="position: relative">
+  <div [formGroup]="form" class="forms-main-wrapper">
+    <div class="form-container">
+      <ng-container formArrayName="users">
+        <ng-container *ngFor="let addUserForm of controls; let i = index">
+          <form [formGroup]="addUserForm" class="border">
+            <button class="close-button border" (click)="closeForm(i)" type="button" *ngIf="i">x</button>
+            <mat-form-field appearance="outline">
+              <mat-label>Name</mat-label>
+              <input
+                matInput
+                formControlName="name"
+                placeholder="Enter the users name"
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input
+                type="email"
+                matInput
+                formControlName="email"
+                placeholder="Ex. pat@example.com"
+              />
+              <mat-error
+                *ngIf="
+                  addUserForm.get('email')?.hasError('email') &&
+                  !addUserForm.get('email?')?.hasError('required')
+                "
+              >
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="addUserForm.get('email')?.errors?.['required']">
+                Email is <strong style="padding-left: .25rem;">Required</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>User's Role</mat-label>
+              <mat-select formControlName="role">
+                <mat-option *ngFor="let role of ROLES" [value]="role">{{ role }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Gender</mat-label>
+              <mat-select formControlName="gender">
+                <mat-option value="male">Male</mat-option>
+                <mat-option value="female">Female</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </form>
+        </ng-container>
+      </ng-container>
+    </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      (click)="submit()"
+    >
+      {{ editId !== undefined ? "Edit" : "Add" }}
+    </button>
+  </div>
+
+  <button
+    class="add-form-button"
+    mat-mini-fab
+    color="primary"
+    aria-label="add a new form"
+    (click)="addEmptyForm()"
+  >
+    +
+  </button>
+</div>
