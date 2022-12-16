@@ -26,7 +26,8 @@ export class UserFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -117,6 +118,8 @@ export class UserFormComponent implements OnInit {
       };
 
       this.userService.edit(userToEdit);
+      this.router.navigate([''])
+            
     } else {
       const usersToAdd: Omit<User, 'id'>[] = this.form
         .getRawValue()
